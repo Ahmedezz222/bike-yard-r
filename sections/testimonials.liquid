@@ -5,10 +5,10 @@
 <section class="testimonials py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 animate-fade-in">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
         What Our
-        <span class="text-gradient">Customers Say</span>
+        <span class="text-gradient-primary">Customers Say</span>
       </h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto">
         Don't just take our word for it. Here's what our community of cyclists has to say about their experience.
@@ -20,7 +20,7 @@
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'testimonial' %}
-            <div class="card p-6 relative">
+            <div class="card p-6 relative animate-slide-up">
               <!-- Quote Icon -->
               <div class="absolute top-4 right-4 text-primary-200">
                 <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@
     </div>
 
     <!-- Stats Section -->
-    <div class="mt-20 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-8 text-white">
+    <div class="mt-20 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-8 text-white animate-fade-in">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         <div>
           <div class="text-4xl font-bold mb-2">500+</div>
@@ -96,7 +96,7 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="text-center mt-16">
+    <div class="text-center mt-16 animate-fade-in">
       <h3 class="text-2xl font-bold text-gray-900 mb-4">
         Join Our Cycling Community
       </h3>

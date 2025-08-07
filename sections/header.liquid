@@ -1,0 +1,240 @@
+{% comment %}
+  Header section for Bike Yard Shopify theme
+{% endcomment %}
+
+<header class="header bg-white shadow-lg sticky top-0 z-50">
+  <div class="container">
+    <div class="header__content flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="header__logo flex-shrink-0">
+        <a href="{{ routes.root_url }}" class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-xl">BY</span>
+          </div>
+          <span class="text-2xl font-bold text-gray-900">{{ shop.name }}</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="header__nav hidden md:flex space-x-8">
+        {% for link in linklists.main-menu.links %}
+          <a
+            href="{{ link.url }}"
+            class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors duration-200 {% if link.active %}text-primary-600{% endif %}"
+          >
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <!-- Right side icons -->
+      <div class="header__actions flex items-center space-x-4">
+        <!-- Search -->
+        <button class="header__search p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200" onclick="toggleSearch()">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+
+        <!-- User -->
+        <a href="{{ routes.account_url }}" class="header__account p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+        </a>
+
+        <!-- Cart -->
+        <a href="{{ routes.cart_url }}" class="header__cart relative p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+          </svg>
+          {% if cart.item_count > 0 %}
+            <span class="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              {{ cart.item_count }}
+            </span>
+          {% endif %}
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          class="header__mobile-menu md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          <svg class="h-5 w-5 mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg class="h-5 w-5 mobile-menu-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="header__mobile-nav md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+        {% for link in linklists.main-menu.links %}
+          <a
+            href="{{ link.url }}"
+            class="text-gray-700 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors duration-200 {% if link.active %}text-primary-600{% endif %}"
+            onclick="closeMobileMenu()"
+          >
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="header__search-bar hidden bg-white border-t border-gray-200 py-4">
+      <div class="flex items-center">
+        <form action="{{ routes.search_url }}" method="get" class="flex-1 flex">
+          <input
+            type="search"
+            name="q"
+            placeholder="Search products..."
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+            value="{{ search.terms }}"
+          >
+          <button
+            type="submit"
+            class="px-6 py-2 bg-primary-600 text-white rounded-r-lg hover:bg-primary-700 transition-colors duration-200"
+          >
+            Search
+          </button>
+        </form>
+        <button
+          onclick="toggleSearch()"
+          class="ml-4 p-2 text-gray-500 hover:text-gray-700"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+  }
+  
+  .header__logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  
+  .header__logo .w-10 {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--primary-600);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__nav {
+    display: none;
+  }
+  
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .header__actions a,
+  .header__actions button {
+    padding: 0.5rem;
+    color: var(--gray-700);
+    transition: color 0.2s;
+  }
+  
+  .header__actions a:hover,
+  .header__actions button:hover {
+    color: var(--primary-600);
+  }
+  
+  .header__cart {
+    position: relative;
+  }
+  
+  .header__cart span {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    background-color: var(--accent-500);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    height: 1.25rem;
+    width: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__mobile-nav {
+    display: none;
+  }
+  
+  .header__search-bar {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .header__nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .header__mobile-menu {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  function toggleMobileMenu() {
+    const mobileNav = document.querySelector('.header__mobile-nav');
+    const menuIcon = document.querySelector('.mobile-menu-icon');
+    const closeIcon = document.querySelector('.mobile-menu-close');
+    
+    mobileNav.classList.toggle('hidden');
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  }
+  
+  function closeMobileMenu() {
+    const mobileNav = document.querySelector('.header__mobile-nav');
+    const menuIcon = document.querySelector('.mobile-menu-icon');
+    const closeIcon = document.querySelector('.mobile-menu-close');
+    
+    mobileNav.classList.add('hidden');
+    menuIcon.classList.remove('hidden');
+    closeIcon.classList.add('hidden');
+  }
+  
+  function toggleSearch() {
+    const searchBar = document.querySelector('.header__search-bar');
+    searchBar.classList.toggle('hidden');
+    
+    if (!searchBar.classList.contains('hidden')) {
+      searchBar.querySelector('input').focus();
+    }
+  }
+</script>

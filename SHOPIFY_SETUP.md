@@ -1,165 +1,287 @@
-# Shopify Setup Guide
+# Bike Yard Shopify Theme Setup Guide
 
-This guide will help you configure your Bike Yard store to work with Shopify.
+This guide will help you set up the Bike Yard Shopify theme on your Shopify store.
 
 ## Prerequisites
 
-1. A Shopify store (you can create one at [shopify.com](https://shopify.com))
-2. Products added to your Shopify store
-3. Node.js and npm installed on your system
+- A Shopify store (Online Store 2.0 compatible)
+- Shopify CLI (optional, for development)
+- Basic knowledge of Shopify theme development
 
-## Step 1: Get Your Shopify Store Domain
+## Installation
 
-1. Log in to your Shopify admin panel
-2. Go to **Settings** → **Domains**
-3. Copy your store domain (it should look like `your-store.myshopify.com`)
+### Method 1: Manual Upload
 
-## Step 2: Generate a Storefront API Access Token
+1. **Download the theme files**
+   - Download all the theme files from this repository
+   - Ensure the folder structure is maintained
 
-1. In your Shopify admin, go to **Settings** → **Apps and sales channels**
-2. Click **Develop apps**
-3. Click **Create an app**
-4. Give your app a name (e.g., "Bike Yard Storefront")
-5. Click **Create app**
-6. In the app settings, click **Configure Admin API scopes**
-7. Add the following scopes:
-   - `read_products`
-   - `read_collections`
-   - `read_inventory`
-   - `read_product_listings`
-8. Click **Save**
-9. Go to **API credentials** tab
-10. Click **Install app**
-11. Copy the **Storefront access token**
+2. **Upload to Shopify**
+   - Go to your Shopify admin panel
+   - Navigate to **Online Store > Themes**
+   - Click **Add theme > Upload theme**
+   - Select the theme folder and upload
 
-## Step 3: Create Environment File
+3. **Activate the theme**
+   - Once uploaded, click **Actions > Publish** to make it your live theme
 
-1. Create a file called `.env.local` in your project root
-2. Add the following content:
+### Method 2: Using Shopify CLI
 
-```env
-# Shopify Configuration
-SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
-SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-storefront-access-token
-```
-
-Replace the placeholder values with your actual Shopify credentials.
-
-## Step 4: Add Products to Your Shopify Store
-
-1. In your Shopify admin, go to **Products** → **Add product**
-2. Add your bike products with:
-   - Product title
-   - Description
-   - Images
-   - Price
-   - Product type (e.g., "Mountain Bikes", "Road Bikes", etc.)
-   - Tags (optional, use "new" for new products)
-   - Variants (if needed)
-
-## Step 5: Test Your Integration
-
-1. Start your development server:
+1. **Install Shopify CLI**
    ```bash
-   npm run dev
+   npm install -g @shopify/cli @shopify/theme
    ```
 
-2. Navigate to `/products` in your browser
-3. You should see your Shopify products displayed
+2. **Login to Shopify**
+   ```bash
+   shopify auth login
+   ```
+
+3. **Create a new theme**
+   ```bash
+   shopify theme init bike-yard-theme
+   ```
+
+4. **Copy theme files**
+   - Copy all files from this repository to the new theme directory
+
+5. **Push to Shopify**
+   ```bash
+   shopify theme push
+   ```
+
+## Theme Structure
+
+```
+bike-yard-theme/
+├── assets/
+│   ├── theme.css
+│   └── theme.js
+├── config/
+│   └── settings_schema.json
+├── layout/
+│   └── theme.liquid
+├── sections/
+│   ├── header.liquid
+│   ├── hero.liquid
+│   ├── featured-products.liquid
+│   ├── about.liquid
+│   ├── testimonials.liquid
+│   └── footer.liquid
+├── templates/
+│   ├── index.liquid
+│   ├── product.liquid
+│   └── collection.liquid
+└── README.md
+```
+
+## Configuration
+
+### 1. Theme Settings
+
+1. Go to **Online Store > Themes**
+2. Click **Customize** on your active theme
+3. Configure the following settings:
+
+#### Colors
+- Primary Color: `#2563eb` (Blue)
+- Accent Color: `#f59e0b` (Orange)
+- Text Color: `#111827` (Dark Gray)
+- Background Color: `#ffffff` (White)
+
+#### Typography
+- Heading Font: Inter (Google Fonts)
+- Body Font: Inter (Google Fonts)
+
+#### Social Media
+- Add your social media URLs (Facebook, Twitter, Instagram, YouTube)
+
+#### Contact Information
+- Store Address
+- Phone Number
+- Email Address
+
+### 2. Navigation Setup
+
+1. Go to **Online Store > Navigation**
+2. Create/edit the **Main menu** with the following links:
+   - Home (`/`)
+   - Products (`/collections/all`)
+   - About (`/pages/about`)
+   - Contact (`/pages/contact`)
+
+3. Create/edit the **Footer menu** with additional links:
+   - Privacy Policy (`/pages/privacy-policy`)
+   - Terms of Service (`/pages/terms-of-service`)
+   - Shipping Info (`/pages/shipping`)
+   - Returns (`/pages/returns`)
+
+### 3. Collections Setup
+
+1. Go to **Products > Collections**
+2. Create collections for your bike categories:
+   - Mountain Bikes
+   - Road Bikes
+   - Electric Bikes
+   - Accessories
+   - etc.
+
+3. Assign products to appropriate collections
+
+### 4. Pages Setup
+
+Create the following pages in **Online Store > Pages**:
+
+#### About Page
+- Title: "About Bike Yard"
+- Content: Add your company story and information
+
+#### Contact Page
+- Title: "Contact Us"
+- Content: Add contact form and information
+
+#### Privacy Policy
+- Title: "Privacy Policy"
+- Content: Add your privacy policy
+
+#### Terms of Service
+- Title: "Terms of Service"
+- Content: Add your terms of service
+
+#### Shipping Info
+- Title: "Shipping Information"
+- Content: Add shipping details and policies
+
+#### Returns
+- Title: "Returns & Exchanges"
+- Content: Add return policy information
+
+### 5. Homepage Sections
+
+The homepage includes the following sections that can be customized:
+
+1. **Hero Section**
+   - Background image
+   - Title and subtitle
+   - Call-to-action buttons
+
+2. **Featured Products**
+   - Select a collection to display
+   - Number of products to show
+   - Section title and subtitle
+
+3. **About Section**
+   - Company description
+   - Feature highlights
+   - About image
+
+4. **Testimonials**
+   - Customer reviews and ratings
+   - Author information and photos
+
+## Customization
+
+### Adding Custom CSS
+
+1. Go to **Online Store > Themes**
+2. Click **Actions > Edit code**
+3. Navigate to `assets/theme.css`
+4. Add your custom styles at the end of the file
+
+### Adding Custom JavaScript
+
+1. Go to **Online Store > Themes**
+2. Click **Actions > Edit code**
+3. Navigate to `assets/theme.js`
+4. Add your custom JavaScript functions
+
+### Modifying Sections
+
+1. Go to **Online Store > Themes**
+2. Click **Actions > Edit code**
+3. Navigate to `sections/`
+4. Edit the desired section file
+
+## Features
+
+### Responsive Design
+- Mobile-first approach
+- Responsive grid system
+- Touch-friendly navigation
+
+### Performance Optimized
+- Lazy loading images
+- Optimized CSS and JavaScript
+- Fast loading times
+
+### SEO Friendly
+- Semantic HTML structure
+- Meta tags support
+- Schema markup ready
+
+### Accessibility
+- ARIA labels
+- Keyboard navigation
+- Screen reader friendly
+
+### E-commerce Features
+- Product filtering and sorting
+- Shopping cart functionality
+- Wishlist support
+- Product image galleries
 
 ## Troubleshooting
 
-### Error: "Failed to load products"
+### Common Issues
 
-**Possible causes:**
-- Incorrect store domain
-- Invalid access token
-- No products in your Shopify store
-- Network connectivity issues
+1. **Theme not loading properly**
+   - Check file permissions
+   - Verify all files are uploaded
+   - Clear browser cache
 
-**Solutions:**
-1. Double-check your `.env.local` file
-2. Verify your access token is correct
-3. Add some test products to your Shopify store
-4. Check your internet connection
+2. **Images not displaying**
+   - Check image URLs
+   - Verify image file formats
+   - Ensure images are uploaded to Shopify
 
-### Error: "Access denied"
+3. **Styles not applying**
+   - Check CSS file path
+   - Verify CSS syntax
+   - Clear theme cache
 
-**Possible causes:**
-- Missing API scopes
-- App not installed properly
+4. **JavaScript errors**
+   - Check browser console for errors
+   - Verify JavaScript syntax
+   - Test in different browsers
 
-**Solutions:**
-1. Reinstall your app in Shopify
-2. Make sure all required scopes are added
-3. Generate a new access token
+### Getting Help
 
-### Products not showing up
+If you encounter issues:
 
-**Possible causes:**
-- Products are not published
-- Products are out of stock
-- Products are in draft status
+1. Check the Shopify documentation
+2. Review the theme code for syntax errors
+3. Test in different browsers
+4. Contact Shopify support if needed
 
-**Solutions:**
-1. Make sure products are published in Shopify
-2. Check product inventory levels
-3. Verify product status is "Active"
+## Updates and Maintenance
 
-## Advanced Configuration
+### Regular Updates
+- Keep Shopify apps updated
+- Monitor theme performance
+- Update product information regularly
 
-### Custom Product Types
-
-To use custom product types for filtering:
-
-1. In Shopify, set product types to match your categories:
-   - Mountain Bikes
-   - Road Bikes
-   - City Bikes
-   - Electric Bikes
-   - Accessories
-   - Clothing
-   - Tools
-
-### Product Tags
-
-Use tags to add special features:
-- `new` - Shows "New" badge
-- `featured` - Can be used for featured products
-- `sale` - Can be used for sale items
-
-### Collections
-
-To organize products into collections:
-
-1. In Shopify, go to **Products** → **Collections**
-2. Create collections for different categories
-3. Add products to collections
-4. Use the collection functions in `lib/shopify.ts`
-
-## Security Notes
-
-- Never commit your `.env.local` file to version control
-- Keep your access tokens secure
-- Regularly rotate your access tokens
-- Use environment-specific tokens for development/production
+### Backup
+- Always backup your theme before making changes
+- Use version control for development
+- Test changes in a development theme first
 
 ## Support
 
-If you're still having issues:
+For additional support:
+- Review Shopify's theme documentation
+- Check the Shopify community forums
+- Contact the theme developer
 
-1. Check the browser console for error messages
-2. Verify your Shopify store is active
-3. Test your API credentials using Shopify's GraphiQL explorer
-4. Contact Shopify support if needed
+## License
 
-## Next Steps
-
-Once your basic integration is working:
-
-1. Add a shopping cart functionality
-2. Implement checkout process
-3. Add product detail pages
-4. Set up inventory tracking
-5. Add customer accounts
-6. Implement search and filtering
+This theme is provided as-is for educational and commercial use. Please ensure you comply with Shopify's terms of service and any applicable licenses for third-party assets used in the theme.

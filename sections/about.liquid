@@ -1,0 +1,252 @@
+{% comment %}
+  About section for Bike Yard Shopify theme
+{% endcomment %}
+
+<section class="about py-16 bg-white">
+  <div class="container">
+    <div class="about__content grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Text Content -->
+      <div class="about__text">
+        <h2 class="about__title text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          {{ section.settings.title | default: 'About Bike Yard' }}
+        </h2>
+        
+        <p class="about__description text-lg text-gray-600 mb-8 leading-relaxed">
+          {{ section.settings.description | default: 'We are passionate about cycling and committed to providing the best bikes, gear, and service to our community. Our expert team is here to help you find the perfect ride for your adventures.' }}
+        </p>
+        
+        <div class="about__features space-y-4 mb-8">
+          {% if section.settings.feature_1 %}
+            <div class="about__feature flex items-start space-x-3">
+              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="about__feature-text text-gray-700">{{ section.settings.feature_1 }}</p>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.feature_2 %}
+            <div class="about__feature flex items-start space-x-3">
+              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="about__feature-text text-gray-700">{{ section.settings.feature_2 }}</p>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.feature_3 %}
+            <div class="about__feature flex items-start space-x-3">
+              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="about__feature-text text-gray-700">{{ section.settings.feature_3 }}</p>
+            </div>
+          {% endif %}
+        </div>
+        
+        {% if section.settings.button_text and section.settings.button_url %}
+          <a 
+            href="{{ section.settings.button_url }}" 
+            class="about__cta inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
+          >
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Image -->
+      <div class="about__image">
+        {% if section.settings.image %}
+          <img 
+            src="{{ section.settings.image | image_url: width: 600 }}" 
+            alt="{{ section.settings.image.alt | escape }}"
+            class="about__image-img w-full h-auto rounded-lg shadow-lg"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="about__placeholder w-full h-96 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center">
+            <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .about__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .about__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+  }
+  
+  .about__description {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
+  
+  .about__features {
+    margin-bottom: 2rem;
+  }
+  
+  .about__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .about__feature-icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--primary-600);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+  
+  .about__feature-icon svg {
+    width: 1rem;
+    height: 1rem;
+    color: white;
+  }
+  
+  .about__feature-text {
+    color: var(--gray-700);
+  }
+  
+  .about__cta {
+    display: inline-block;
+    background-color: var(--primary-600);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .about__cta:hover {
+    background-color: var(--primary-700);
+  }
+  
+  .about__image-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about__placeholder {
+    width: 100%;
+    height: 24rem;
+    background-color: var(--gray-200);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about__placeholder svg {
+    width: 6rem;
+    height: 6rem;
+    color: var(--gray-400);
+  }
+  
+  @media (min-width: 768px) {
+    .about__title {
+      font-size: 2.25rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .about__content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "About Bike Yard"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We are passionate about cycling and committed to providing the best bikes, gear, and service to our community. Our expert team is here to help you find the perfect ride for your adventures."
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Expert bike fitting and maintenance services"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "Wide selection of premium bikes and accessories"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Community events and group rides"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "About Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,383 @@
+{% comment %}
+  Product page template for Bike Yard Shopify theme
+{% endcomment %}
+
+<div class="product-page">
+  <div class="container py-8">
+    <div class="product-page__content grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Product Images -->
+      <div class="product-page__images">
+        <div class="product-page__main-image mb-4">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 600 }}" 
+              alt="{{ product.featured_image.alt | escape }}"
+              class="w-full h-auto rounded-lg"
+              id="ProductMainImage"
+            >
+          {% else %}
+            <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
+              <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+          {% endif %}
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="product-page__thumbnails grid grid-cols-4 gap-2">
+            {% for image in product.images %}
+              <button 
+                class="product-page__thumbnail border-2 border-transparent hover:border-primary-600 rounded-lg overflow-hidden"
+                onclick="changeMainImage('{{ image | image_url: width: 600 }}')"
+              >
+                <img 
+                  src="{{ image | image_url: width: 150, height: 150, crop: 'center' }}" 
+                  alt="{{ image.alt | escape }}"
+                  class="w-full h-24 object-cover"
+                >
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-page__info">
+        <h1 class="product-page__title text-3xl font-bold text-gray-900 mb-4">
+          {{ product.title }}
+        </h1>
+        
+        <div class="product-page__price mb-6">
+          {% if product.compare_at_price > product.price %}
+            <span class="product-page__compare-price text-gray-500 line-through text-lg mr-2">
+              {{ product.compare_at_price | money }}
+            </span>
+          {% endif %}
+          <span class="product-page__current-price text-3xl font-bold text-primary-600">
+            {{ product.price | money }}
+          </span>
+        </div>
+
+        {% if product.description != blank %}
+          <div class="product-page__description mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Description</h3>
+            <div class="text-gray-700 leading-relaxed">
+              {{ product.description }}
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Product Form -->
+        <form action="/cart/add" method="post" class="product-page__form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          {% if product.has_only_default_variant == false %}
+            <div class="product-page__variants mb-6">
+              {% for option in product.options_with_values %}
+                <div class="product-page__option mb-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    {{ option.name }}
+                  </label>
+                  <select 
+                    name="options[{{ option.name | escape }}]"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                  >
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}">
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="product-page__quantity mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+            <input 
+              type="number" 
+              name="quantity" 
+              value="1" 
+              min="1" 
+              class="w-24 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+            >
+          </div>
+
+          <div class="product-page__actions">
+            {% if product.available %}
+              <button 
+                type="submit" 
+                class="product-page__add-to-cart w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200 mb-4"
+              >
+                Add to Cart
+              </button>
+            {% else %}
+              <button 
+                disabled 
+                class="product-page__sold-out w-full bg-gray-300 text-gray-500 py-3 px-6 rounded-lg font-semibold text-lg cursor-not-allowed mb-4"
+              >
+                Sold Out
+              </button>
+            {% endif %}
+            
+            <button 
+              type="button" 
+              class="product-page__wishlist w-full border-2 border-primary-600 text-primary-600 py-3 px-6 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors duration-200"
+            >
+              Add to Wishlist
+            </button>
+          </div>
+        </form>
+
+        <!-- Product Meta -->
+        <div class="product-page__meta mt-8 pt-8 border-t border-gray-200">
+          {% if product.vendor %}
+            <div class="product-page__vendor mb-2">
+              <span class="text-sm text-gray-600">Vendor:</span>
+              <span class="text-sm font-medium text-gray-900 ml-1">{{ product.vendor }}</span>
+            </div>
+          {% endif %}
+          
+          {% if product.type %}
+            <div class="product-page__type mb-2">
+              <span class="text-sm text-gray-600">Type:</span>
+              <span class="text-sm font-medium text-gray-900 ml-1">{{ product.type }}</span>
+            </div>
+          {% endif %}
+          
+          <div class="product-page__sku">
+            <span class="text-sm text-gray-600">SKU:</span>
+            <span class="text-sm font-medium text-gray-900 ml-1">{{ product.selected_or_first_available_variant.sku }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-page {
+    padding: 2rem 0;
+  }
+  
+  .product-page__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .product-page__main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  
+  .product-page__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .product-page__thumbnail {
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  
+  .product-page__thumbnail:hover {
+    border-color: var(--primary-600);
+  }
+  
+  .product-page__thumbnail img {
+    width: 100%;
+    height: 6rem;
+    object-fit: cover;
+  }
+  
+  .product-page__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+  }
+  
+  .product-page__price {
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-page__compare-price {
+    color: var(--gray-500);
+    text-decoration: line-through;
+    font-size: 1.125rem;
+    margin-right: 0.5rem;
+  }
+  
+  .product-page__current-price {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--primary-600);
+  }
+  
+  .product-page__description {
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-page__description h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-page__description div {
+    color: var(--gray-700);
+    line-height: 1.75;
+  }
+  
+  .product-page__option {
+    margin-bottom: 1rem;
+  }
+  
+  .product-page__option label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-page__option select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .product-page__option select:focus {
+    border-color: var(--primary-600);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .product-page__quantity {
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-page__quantity label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-page__quantity input {
+    width: 6rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .product-page__quantity input:focus {
+    border-color: var(--primary-600);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .product-page__add-to-cart {
+    width: 100%;
+    background-color: var(--primary-600);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  
+  .product-page__add-to-cart:hover {
+    background-color: var(--primary-700);
+  }
+  
+  .product-page__sold-out {
+    width: 100%;
+    background-color: var(--gray-300);
+    color: var(--gray-500);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border: none;
+    cursor: not-allowed;
+    margin-bottom: 1rem;
+  }
+  
+  .product-page__wishlist {
+    width: 100%;
+    border: 2px solid var(--primary-600);
+    color: var(--primary-600);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .product-page__wishlist:hover {
+    background-color: var(--primary-600);
+    color: white;
+  }
+  
+  .product-page__meta {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  
+  .product-page__vendor,
+  .product-page__type,
+  .product-page__sku {
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-page__vendor span:first-child,
+  .product-page__type span:first-child,
+  .product-page__sku span:first-child {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+  }
+  
+  .product-page__vendor span:last-child,
+  .product-page__type span:last-child,
+  .product-page__sku span:last-child {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-900);
+    margin-left: 0.25rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .product-page__content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  function changeMainImage(imageUrl) {
+    const mainImage = document.getElementById('ProductMainImage');
+    if (mainImage) {
+      mainImage.src = imageUrl;
+    }
+  }
+</script>

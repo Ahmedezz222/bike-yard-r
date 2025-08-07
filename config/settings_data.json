@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "custom_css": [
+          "logo {gap: 20px padding:20px 20px maredg:20px 20px}"
+        ],
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "description": "Your one-stop destination for quality bikes, accessories, and expert service. We're passionate about cycling and committed to providing the best experience for our customers.",
+          "address": "123 Bike Street, City, Country",
+          "phone": "+1 234 567 8900",
+          "email": "info@bikeyard.com",
+          "facebook_url": "",
+          "twitter_url": "",
+          "instagram_url": "",
+          "youtube_url": ""
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "hero_title": "Premium Cycling Store",
+          "hero_subtitle": "Discover the perfect bike, gear, and accessories for your cycling adventure. From mountain trails to city streets, we have everything you need.",
+          "primary_button_text": "Shop Now",
+          "primary_button_url": "",
+          "secondary_button_text": "Learn More",
+          "secondary_button_url": ""
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "",
+          "product_limit": 6
+        }
+      },
+      "about": {
+        "type": "about",
+        "settings": {
+          "title": "About Bike Yard",
+          "description": "At Bike Yard Shop, we are passionate about cycling. Our mission is to provide top-quality bikes, gear, and accessories to cyclists of all levels.",
+          "feature_1_title": "Quality Bikes",
+          "feature_1_description": "Premium selection of mountain, road, and city bikes from top brands",
+          "feature_2_title": "Expert Service",
+          "feature_2_description": "Professional maintenance and repair services by certified technicians",
+          "feature_3_title": "Cafe & Community",
+          "feature_3_description": "Relax in our cafe while we service your bike and connect with fellow cyclists",
+          "feature_4_title": "Cycling Community",
+          "feature_4_description": "Join our vibrant community of cycling enthusiasts and participate in group rides",
+          "button_text": "Learn More About Us",
+          "button_url": ""
+        }
+      },
+      "testimonials": {
+        "type": "testimonials",
+        "settings": {
+          "title": "What Our Customers Say",
+          "subtitle": "Don't just take our word for it. Here's what our community of cyclists has to say about their experience.",
+          "cta_title": "Join Our Cycling Community",
+          "cta_description": "Experience the difference that quality bikes, expert service, and a passionate community can make in your cycling journey.",
+          "primary_button_text": "Shop Now",
+          "primary_button_url": "",
+          "secondary_button_text": "Read More Reviews",
+          "secondary_button_url": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

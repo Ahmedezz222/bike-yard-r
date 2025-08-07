@@ -4,7 +4,9 @@
 :root {
   --primary-600: #2563eb;
   --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
   --accent-500: #f59e0b;
+  --accent-600: #d97706;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -337,8 +339,77 @@ body {
 /* Border Radius */
 .rounded-lg { border-radius: 0.5rem; }
 
-/* Background Gradient */
-.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--primary-600), var(--primary-700)); }
+/* Unified and modernized gradients */
+:root {
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --accent-500: #f59e0b;
+  --accent-600: #d97706;
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(270deg, var(--primary-600), var(--accent-500), var(--primary-700));
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 50%, var(--accent-600) 100%);
+}
+
+.text-gradient-primary, .text-gradient {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+  min-width: 180px;
+  min-height: 48px;
+  font-size: 1.1rem;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(37, 99, 235, 0.2);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1);
+  min-width: 180px;
+  min-height: 48px;
+  font-size: 1.1rem;
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(245, 158, 11, 0.2);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 /* Text Styles */
 .italic { font-style: italic; }
@@ -382,19 +453,6 @@ svg {
   .no-print {
     display: none !important;
   }
-}
-
-/* Gradient Background Utility */
-.bg-animated-gradient {
-  background: linear-gradient(270deg, var(--primary-600), var(--accent-500), var(--primary-700));
-  background-size: 600% 600%;
-  animation: gradientMove 8s ease infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Improved Card and Button Sizing */

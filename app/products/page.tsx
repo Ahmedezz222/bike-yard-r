@@ -6,108 +6,37 @@ import { Search, Filter, Star, ShoppingCart, Heart, Eye } from 'lucide-react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-
-interface Product {
-  id: string
-  name: string
-  price: number
-  originalPrice?: number
-  image: string
-  category: string
-  rating: number
-  reviews: number
-  isNew?: boolean
-  isSale?: boolean
-}
-
-const allProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Mountain Bike Pro X1',
-    price: 1299.99,
-    originalPrice: 1499.99,
-    image: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=500&h=300&fit=crop',
-    category: 'Mountain Bikes',
-    rating: 4.8,
-    reviews: 124,
-    isSale: true,
-  },
-  {
-    id: '2',
-    name: 'Road Bike Speed Master',
-    price: 899.99,
-    image: 'https://images.unsplash.com/photo-1544191696-102dbdaeeaa5?w=500&h=300&fit=crop',
-    category: 'Road Bikes',
-    rating: 4.9,
-    reviews: 89,
-    isNew: true,
-  },
-  {
-    id: '3',
-    name: 'City Cruiser Comfort',
-    price: 599.99,
-    image: 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=500&h=300&fit=crop',
-    category: 'City Bikes',
-    rating: 4.7,
-    reviews: 156,
-  },
-  {
-    id: '4',
-    name: 'Premium Bike Helmet',
-    price: 89.99,
-    originalPrice: 119.99,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop',
-    category: 'Accessories',
-    rating: 4.6,
-    reviews: 203,
-    isSale: true,
-  },
-  {
-    id: '5',
-    name: 'Cycling Jersey Pro',
-    price: 79.99,
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=300&fit=crop',
-    category: 'Clothing',
-    rating: 4.5,
-    reviews: 67,
-  },
-  {
-    id: '6',
-    name: 'Bike Repair Kit',
-    price: 45.99,
-    image: 'https://images.unsplash.com/photo-1587554800590-8c6b1a5c0c0c?w=500&h=300&fit=crop',
-    category: 'Tools',
-    rating: 4.8,
-    reviews: 98,
-  },
-  {
-    id: '7',
-    name: 'Electric Mountain Bike',
-    price: 2499.99,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop',
-    category: 'Electric Bikes',
-    rating: 4.9,
-    reviews: 45,
-    isNew: true,
-  },
-  {
-    id: '8',
-    name: 'Cycling Shorts',
-    price: 59.99,
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=300&fit=crop',
-    category: 'Clothing',
-    rating: 4.4,
-    reviews: 89,
-  },
-]
+import { getAllProducts, ShopifyProduct } from '@/lib/shopify'
 
 const categories = ['All', 'Mountain Bikes', 'Road Bikes', 'City Bikes', 'Electric Bikes', 'Accessories', 'Clothing', 'Tools']
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>(allProducts)
+  const [products, setProducts] = useState<ShopifyProduct[]>([])
+  const [allProducts, setAllProducts] = useState<ShopifyProduct[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('featured')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Fetch products from Shopify
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true)
+        const shopifyProducts = await getAllProducts()
+        setAllProducts(shopifyProducts)
+        setProducts(shopifyProducts)
+      } catch (err) {
+        console.error('Error fetching products:', err)
+        setError('Failed to load products. Please check your Shopify configuration.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   useEffect(() => {
     let filtered = allProducts
@@ -115,29 +44,32 @@ export default function ProductsPage() {
     // Filter by search term
     if (searchTerm) {
       filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.productType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
       )
     }
 
     // Filter by category
     if (selectedCategory !== 'All') {
-      filtered = filtered.filter(product => product.category === selectedCategory)
+      filtered = filtered.filter(product => product.productType === selectedCategory)
     }
 
     // Sort products
     switch (sortBy) {
       case 'price-low':
-        filtered.sort((a, b) => a.price - b.price)
+        filtered.sort((a, b) => parseFloat(a.variants[0]?.price || '0') - parseFloat(b.variants[0]?.price || '0'))
         break
       case 'price-high':
-        filtered.sort((a, b) => b.price - a.price)
+        filtered.sort((a, b) => parseFloat(b.variants[0]?.price || '0') - parseFloat(a.variants[0]?.price || '0'))
         break
       case 'rating':
-        filtered.sort((a, b) => b.rating - a.rating)
+        // Note: Shopify doesn't include ratings by default, so we'll sort by title
+        filtered.sort((a, b) => a.title.localeCompare(b.title))
         break
       case 'newest':
-        filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0))
+        // Note: Shopify doesn't include creation date by default, so we'll sort by title
+        filtered.sort((a, b) => a.title.localeCompare(b.title))
         break
       default:
         // Keep original order for 'featured'
@@ -145,7 +77,52 @@ export default function ProductsPage() {
     }
 
     setProducts(filtered)
-  }, [searchTerm, selectedCategory, sortBy])
+  }, [searchTerm, selectedCategory, sortBy, allProducts])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="pt-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+              <p className="mt-4 text-gray-600">Loading products...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="pt-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center">
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <strong className="font-bold">Error: </strong>
+                <span className="block sm:inline">{error}</span>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Please make sure you have:
+              </p>
+              <ul className="text-left max-w-md mx-auto text-gray-600 space-y-2">
+                <li>• Created a `.env.local` file with your Shopify credentials</li>
+                <li>• Set up your Shopify store domain</li>
+                <li>• Generated a Storefront API access token</li>
+                <li>• Added products to your Shopify store</li>
+              </ul>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -215,8 +192,8 @@ export default function ProductsPage() {
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
                   <option value="price-high">Price: High to Low</option>
-                  <option value="rating">Highest Rated</option>
-                  <option value="newest">Newest</option>
+                  <option value="rating">Name A-Z</option>
+                  <option value="newest">Name Z-A</option>
                 </select>
               </div>
             </div>
@@ -247,8 +224,8 @@ export default function ProductsPage() {
                   {/* Product Image */}
                   <div className="relative overflow-hidden rounded-t-xl">
                     <Image
-                      src={product.image}
-                      alt={product.name}
+                      src={product.images[0]?.src || '/placeholder-product.jpg'}
+                      alt={product.images[0]?.altText || product.title}
                       width={500}
                       height={300}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -256,12 +233,12 @@ export default function ProductsPage() {
                     
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-2">
-                      {product.isNew && (
+                      {product.tags.includes('new') && (
                         <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                           New
                         </span>
                       )}
-                      {product.isSale && (
+                      {product.variants[0]?.compareAtPrice && (
                         <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                           Sale
                         </span>
@@ -283,51 +260,43 @@ export default function ProductsPage() {
                   <div className="p-4">
                     <div className="mb-2">
                       <span className="text-sm text-primary-600 font-medium">
-                        {product.category}
+                        {product.productType}
                       </span>
                     </div>
                     
                     <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
-                      {product.name}
+                      {product.title}
                     </h3>
 
-                    {/* Rating */}
-                    <div className="flex items-center mb-3">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`h-4 w-4 ${
-                              i < Math.floor(product.rating)
-                                ? 'text-yellow-400 fill-current'
-                                : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-sm text-gray-600 ml-2">
-                        ({product.reviews})
-                      </span>
-                    </div>
+                    {/* Description */}
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                      {product.description}
+                    </p>
 
                     {/* Price */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2">
                         <span className="text-xl font-bold text-gray-900">
-                          ${product.price}
+                          ${product.variants[0]?.price || '0.00'}
                         </span>
-                        {product.originalPrice && (
+                        {product.variants[0]?.compareAtPrice && (
                           <span className="text-lg text-gray-500 line-through">
-                            ${product.originalPrice}
+                            ${product.variants[0].compareAtPrice}
                           </span>
                         )}
                       </div>
+                      <span className="text-sm text-gray-500">
+                        {product.vendor}
+                      </span>
                     </div>
 
                     {/* Add to Cart Button */}
-                    <button className="w-full btn-primary group/btn">
+                    <button 
+                      className={`w-full btn-primary group/btn ${!product.variants[0]?.available ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={!product.variants[0]?.available}
+                    >
                       <ShoppingCart className="h-5 w-5 mr-2 group-hover/btn:animate-bounce" />
-                      Add to Cart
+                      {product.variants[0]?.available ? 'Add to Cart' : 'Out of Stock'}
                     </button>
                   </div>
                 </motion.div>

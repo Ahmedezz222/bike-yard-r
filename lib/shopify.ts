@@ -2,8 +2,8 @@ import Client from 'shopify-buy'
 
 // Initialize Shopify client
 const client = Client.buildClient({
-  domain: process.env.SHOPIFY_STORE_DOMAIN || 'your-store.myshopify.com',
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || 'your-access-token',
+  domain: process.env.SHOPIFY_STORE_DOMAIN || '',
+  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || '',
 })
 
 export interface ShopifyProduct {
@@ -44,6 +44,11 @@ export interface ShopifyCollection {
 // Fetch all products
 export async function getAllProducts(): Promise<ShopifyProduct[]> {
   try {
+    // Check if environment variables are set
+    if (!process.env.SHOPIFY_STORE_DOMAIN || !process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
+      throw new Error('Shopify environment variables are not configured. Please check your .env.local file.')
+    }
+    
     const products = await client.product.fetchAll()
     return products.map((product: any) => ({
       id: product.id,

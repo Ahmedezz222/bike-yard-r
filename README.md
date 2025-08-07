@@ -66,6 +66,8 @@ A modern, responsive e-commerce website built with Next.js, TypeScript, and Tail
    SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
    SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-storefront-access-token
    ```
+   
+   **Important**: You need to set up your Shopify store first. See the [Shopify Setup Guide](SHOPIFY_SETUP.md) for detailed instructions.
 
 4. **Run the development server**
    ```bash

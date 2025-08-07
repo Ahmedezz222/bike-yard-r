@@ -145,8 +145,8 @@
     color: #111827;
   }
   
-  .text-gradient {
-    background: linear-gradient(135deg, var(--accent-400) 0%, var(--primary-400) 100%);
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -274,19 +274,49 @@
   }
   
   .btn-primary {
-    background: var(--primary-600);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
     color: white;
+    font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-    font-weight: 600;
     text-decoration: none;
     display: inline-block;
     transition: all 0.3s ease;
+    transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+    min-width: 180px;
+    min-height: 48px;
+    font-size: 1.1rem;
   }
   
   .btn-primary:hover {
-    background: var(--primary-700);
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgba(37, 99, 235, 0.2);
+  }
+  
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   @media (min-width: 640px) {

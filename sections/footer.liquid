@@ -3,156 +3,164 @@
 {% endcomment %}
 
 <footer class="footer bg-gray-900 text-white">
-  <div class="container">
-    <div class="footer__content py-12">
-      <div class="footer__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="footer__company">
-          <div class="footer__logo flex items-center space-x-2 mb-4">
-            <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-xl">BY</span>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- About Bike Yard -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center space-x-2 mb-6">
+          <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-xl">BY</span>
+          </div>
+          <span class="text-2xl font-bold">Bike Yard</span>
+        </div>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Your one-stop destination for quality bikes, accessories, and expert service. 
+          We're passionate about cycling and committed to providing the best experience 
+          for our customers.
+        </p>
+        <div class="flex space-x-4">
+          <a href="{{ section.settings.facebook_url }}" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300" aria-label="Facebook">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="{{ section.settings.twitter_url }}" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300" aria-label="Twitter">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="{{ section.settings.instagram_url }}" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300" aria-label="Instagram">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.418-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.928.875 1.418 2.026 1.418 3.323s-.49 2.448-1.418 3.244c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.781c-.49 0-.928-.175-1.297-.49-.368-.315-.49-.753-.49-1.243 0-.49.122-.928.49-1.243.369-.315.807-.49 1.297-.49s.928.175 1.297.49c.368.315.49.753.49 1.243 0 .49-.122.928-.49 1.243-.369.315-.807.49-1.297.49z"/>
+            </svg>
+          </a>
+          <a href="{{ section.settings.youtube_url }}" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-300" aria-label="YouTube">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="{{ routes.root_url }}" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/collections/all" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Products
+            </a>
+          </li>
+          <li>
+            <a href="/pages/contact" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Contact us
+            </a>
+          </li>
+          <li>
+            <a href="/pages/cafe" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Cafe Menu
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div>
+        <h3 class="text-lg font-semibold mb-6">Categories</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="/collections/mountain-bikes" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Mountain Bikes
+            </a>
+          </li>
+          <li>
+            <a href="/collections/road-bikes" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Road Bikes
+            </a>
+          </li>
+          <li>
+            <a href="/collections/city-bikes" class="text-gray-400 hover:text-white transition-colors duration-300">
+              City Bikes
+            </a>
+          </li>
+          <li>
+            <a href="/collections/accessories" class="text-gray-400 hover:text-white transition-colors duration-300">
+              Accessories
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-6">Contact Info</h3>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <svg class="h-5 w-5 text-primary-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <div>
+              <p class="text-gray-400">
+                {{ section.settings.address | default: '123 Bike Street, City, Country' }}
+              </p>
             </div>
-            <span class="text-2xl font-bold">{{ shop.name }}</span>
           </div>
-          
-          <p class="footer__description text-gray-300 mb-6 leading-relaxed">
-            {{ section.settings.company_description | default: 'Your premier destination for premium bikes, gear, and cycling expertise. We\'re passionate about helping you find the perfect ride for your adventures.' }}
-          </p>
-          
-          <div class="footer__social flex space-x-4">
-            {% if section.settings.facebook_url %}
-              <a href="{{ section.settings.facebook_url }}" class="footer__social-link text-gray-400 hover:text-white transition-colors duration-200">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-            {% endif %}
-            
-            {% if section.settings.instagram_url %}
-              <a href="{{ section.settings.instagram_url }}" class="footer__social-link text-gray-400 hover:text-white transition-colors duration-200">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.781c-.49 0-.875-.385-.875-.875s.385-.875.875-.875.875.385.875.875-.385.875-.875.875zm-7.83 9.781c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297z"/>
-                </svg>
-              </a>
-            {% endif %}
-            
-            {% if section.settings.twitter_url %}
-              <a href="{{ section.settings.twitter_url }}" class="footer__social-link text-gray-400 hover:text-white transition-colors duration-200">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </a>
-            {% endif %}
-            
-            {% if section.settings.youtube_url %}
-              <a href="{{ section.settings.youtube_url }}" class="footer__social-link text-gray-400 hover:text-white transition-colors duration-200">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </a>
-            {% endif %}
+          <div class="flex items-center space-x-3">
+            <svg class="h-5 w-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            <a href="tel:{{ section.settings.phone | default: '+12345678900' }}" class="text-gray-400 hover:text-white transition-colors duration-300">
+              {{ section.settings.phone | default: '+1 234 567 8900' }}
+            </a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg class="h-5 w-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <a href="mailto:{{ section.settings.email | default: 'info@bikeyard.com' }}" class="text-gray-400 hover:text-white transition-colors duration-300">
+              {{ section.settings.email | default: 'info@bikeyard.com' }}
+            </a>
           </div>
         </div>
 
-        <!-- Quick Links -->
-        <div class="footer__links">
-          <h3 class="footer__section-title text-lg font-semibold mb-4">Quick Links</h3>
-          <ul class="footer__links-list space-y-2">
-            {% for link in linklists.footer.links %}
-              <li>
-                <a href="{{ link.url }}" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                  {{ link.title }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <!-- Customer Service -->
-        <div class="footer__customer-service">
-          <h3 class="footer__section-title text-lg font-semibold mb-4">Customer Service</h3>
-          <ul class="footer__service-list space-y-2">
-            <li>
-              <a href="{{ routes.account_url }}" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                My Account
-              </a>
-            </li>
-            <li>
-              <a href="{{ routes.cart_url }}" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                Shopping Cart
-              </a>
-            </li>
-            <li>
-              <a href="/pages/contact" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a href="/pages/shipping" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                Shipping Info
-              </a>
-            </li>
-            <li>
-              <a href="/pages/returns" class="footer__link text-gray-300 hover:text-white transition-colors duration-200">
-                Returns & Exchanges
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="footer__contact">
-          <h3 class="footer__section-title text-lg font-semibold mb-4">Contact Info</h3>
-          <div class="footer__contact-info space-y-3">
-            {% if section.settings.address %}
-              <div class="footer__contact-item flex items-start space-x-3">
-                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span class="text-gray-300">{{ section.settings.address }}</span>
-              </div>
-            {% endif %}
-            
-            {% if section.settings.phone %}
-              <div class="footer__contact-item flex items-center space-x-3">
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                </svg>
-                <a href="tel:{{ section.settings.phone }}" class="text-gray-300 hover:text-white transition-colors duration-200">
-                  {{ section.settings.phone }}
-                </a>
-              </div>
-            {% endif %}
-            
-            {% if section.settings.email %}
-              <div class="footer__contact-item flex items-center space-x-3">
-                <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-                <a href="mailto:{{ section.settings.email }}" class="text-gray-300 hover:text-white transition-colors duration-200">
-                  {{ section.settings.email }}
-                </a>
-              </div>
-            {% endif %}
+        <!-- Newsletter Signup -->
+        <div class="mt-8">
+          <h4 class="text-sm font-semibold mb-3">Newsletter</h4>
+          <div class="flex">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-gray-400"
+            >
+            <button class="px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded-r-lg transition-colors duration-300">
+              Subscribe
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Bottom Bar -->
-    <div class="footer__bottom border-t border-gray-800 py-6">
-      <div class="footer__bottom-content flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div class="footer__copyright text-gray-400 text-sm">
-          © {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
-        </div>
-        
-        <div class="footer__legal flex space-x-6">
-          <a href="/pages/privacy-policy" class="footer__legal-link text-gray-400 hover:text-white text-sm transition-colors duration-200">
+    <div class="border-t border-gray-800 mt-12 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">
+          © 2025 Bike Yard Shop. All Rights Reserved.
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="/pages/privacy" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
             Privacy Policy
           </a>
-          <a href="/pages/terms-of-service" class="footer__legal-link text-gray-400 hover:text-white text-sm transition-colors duration-200">
+          <a href="/pages/terms" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
             Terms of Service
+          </a>
+          <a href="/pages/shipping" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
+            Shipping Info
           </a>
         </div>
       </div>
@@ -162,151 +170,217 @@
 
 <style>
   .footer {
-    background-color: var(--gray-900);
+    background: #111827;
     color: white;
   }
   
-  .footer__content {
-    padding: 3rem 0;
+  .footer > div {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
   
-  .footer__grid {
+  .footer .grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
   }
   
-  .footer__logo {
+  .footer .flex.items-center.space-x-2 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
-  .footer__logo .w-10 {
+  .footer .w-10.h-10 {
     width: 2.5rem;
     height: 2.5rem;
-    background-color: var(--primary-600);
+    background: var(--primary-600);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .footer__description {
-    color: var(--gray-300);
-    margin-bottom: 1.5rem;
-    line-height: 1.75;
+  .footer .w-10.h-10 > span {
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
   }
   
-  .footer__social {
+  .footer .text-2xl {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .footer .text-gray-400 {
+    color: #9ca3af;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer .flex.space-x-4 {
     display: flex;
     gap: 1rem;
   }
   
-  .footer__social-link {
-    color: var(--gray-400);
-    transition: color 0.2s;
+  .footer .flex.space-x-4 a {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #374151;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
   }
   
-  .footer__social-link:hover {
-    color: white;
+  .footer .flex.space-x-4 a:hover {
+    background: var(--primary-600);
   }
   
-  .footer__section-title {
+  .footer h3 {
     font-size: 1.125rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
-  .footer__links-list,
-  .footer__service-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
   
-  .footer__links-list li,
-  .footer__service-list li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer__link {
-    color: var(--gray-300);
+  .footer ul a {
+    color: #9ca3af;
+    transition: color 0.3s ease;
     text-decoration: none;
-    transition: color 0.2s;
   }
   
-  .footer__link:hover {
+  .footer ul a:hover {
     color: white;
   }
   
-  .footer__contact-info {
-    margin: 0;
-    padding: 0;
+  .footer .space-y-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  .footer__contact-item {
+  .footer .flex.items-start.space-x-3,
+  .footer .flex.items-center.space-x-3 {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
   }
   
-  .footer__contact-item svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--gray-400);
-    flex-shrink: 0;
-    margin-top: 0.125rem;
+  .footer .flex.items-center.space-x-3 {
+    align-items: center;
   }
   
-  .footer__bottom {
-    border-top: 1px solid var(--gray-800);
-    padding: 1.5rem 0;
+  .footer .text-primary-400 {
+    color: var(--primary-400);
   }
   
-  .footer__bottom-content {
+  .footer .mt-8 {
+    margin-top: 2rem;
+  }
+  
+  .footer .mt-8 h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer .mt-8 .flex {
+    display: flex;
+  }
+  
+  .footer .mt-8 input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    background: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem 0 0 0.5rem;
+    outline: none;
+    color: white;
+  }
+  
+  .footer .mt-8 input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .footer .mt-8 input:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 2px rgba(var(--primary-500), 0.2);
+  }
+  
+  .footer .mt-8 button {
+    padding: 0.5rem 1rem;
+    background: var(--primary-600);
+    border: none;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: white;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .footer .mt-8 button:hover {
+    background: var(--primary-700);
+  }
+  
+  .footer .border-t {
+    border-top: 1px solid #374151;
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+  
+  .footer .border-t > div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
   }
   
-  .footer__copyright {
-    color: var(--gray-400);
+  .footer .border-t p {
+    color: #9ca3af;
     font-size: 0.875rem;
   }
   
-  .footer__legal {
+  .footer .border-t .flex.space-x-6 {
     display: flex;
     gap: 1.5rem;
+    margin-top: 1rem;
   }
   
-  .footer__legal-link {
-    color: var(--gray-400);
+  .footer .border-t .flex.space-x-6 a {
+    color: #9ca3af;
     font-size: 0.875rem;
+    transition: color 0.3s ease;
     text-decoration: none;
-    transition: color 0.2s;
   }
   
-  .footer__legal-link:hover {
+  .footer .border-t .flex.space-x-6 a:hover {
     color: white;
   }
   
   @media (min-width: 768px) {
-    .footer__grid {
+    .footer .grid {
       grid-template-columns: repeat(2, 1fr);
     }
     
-    .footer__bottom-content {
+    .footer .border-t > div {
       flex-direction: row;
-      gap: 0;
+    }
+    
+    .footer .border-t .flex.space-x-6 {
+      margin-top: 0;
     }
   }
   
   @media (min-width: 1024px) {
-    .footer__grid {
+    .footer .grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
@@ -318,24 +392,27 @@
   "settings": [
     {
       "type": "textarea",
-      "id": "company_description",
+      "id": "description",
       "label": "Company Description",
-      "default": "Your premier destination for premium bikes, gear, and cycling expertise. We're passionate about helping you find the perfect ride for your adventures."
+      "default": "Your one-stop destination for quality bikes, accessories, and expert service. We're passionate about cycling and committed to providing the best experience for our customers."
     },
     {
       "type": "text",
       "id": "address",
-      "label": "Address"
+      "label": "Address",
+      "default": "123 Bike Street, City, Country"
     },
     {
       "type": "text",
       "id": "phone",
-      "label": "Phone Number"
+      "label": "Phone Number",
+      "default": "+1 234 567 8900"
     },
     {
-      "type": "email",
+      "type": "text",
       "id": "email",
-      "label": "Email Address"
+      "label": "Email Address",
+      "default": "info@bikeyard.com"
     },
     {
       "type": "url",
@@ -344,18 +421,23 @@
     },
     {
       "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram URL"
-    },
-    {
-      "type": "url",
       "id": "twitter_url",
       "label": "Twitter URL"
     },
     {
       "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
       "id": "youtube_url",
       "label": "YouTube URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
     }
   ]
 }

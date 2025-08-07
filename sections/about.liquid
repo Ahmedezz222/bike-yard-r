@@ -2,80 +2,119 @@
   About section for Bike Yard Shopify theme
 {% endcomment %}
 
-<section class="about py-16 bg-white">
-  <div class="container">
-    <div class="about__content grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Text Content -->
-      <div class="about__text">
-        <h2 class="about__title text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-          {{ section.settings.title | default: 'About Bike Yard' }}
-        </h2>
-        
-        <p class="about__description text-lg text-gray-600 mb-8 leading-relaxed">
-          {{ section.settings.description | default: 'We are passionate about cycling and committed to providing the best bikes, gear, and service to our community. Our expert team is here to help you find the perfect ride for your adventures.' }}
-        </p>
-        
-        <div class="about__features space-y-4 mb-8">
-          {% if section.settings.feature_1 %}
-            <div class="about__feature flex items-start space-x-3">
-              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <p class="about__feature-text text-gray-700">{{ section.settings.feature_1 }}</p>
-            </div>
-          {% endif %}
-          
-          {% if section.settings.feature_2 %}
-            <div class="about__feature flex items-start space-x-3">
-              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <p class="about__feature-text text-gray-700">{{ section.settings.feature_2 }}</p>
-            </div>
-          {% endif %}
-          
-          {% if section.settings.feature_3 %}
-            <div class="about__feature flex items-start space-x-3">
-              <div class="about__feature-icon flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <p class="about__feature-text text-gray-700">{{ section.settings.feature_3 }}</p>
-            </div>
-          {% endif %}
+<section class="about py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Content -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
+            About
+            <span class="text-gradient">Bike Yard</span>
+          </h2>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            At Bike Yard Shop, we are passionate about cycling. Our mission is to provide 
+            top-quality bikes, gear, and accessories to cyclists of all levels.
+          </p>
         </div>
-        
-        {% if section.settings.button_text and section.settings.button_url %}
-          <a 
-            href="{{ section.settings.button_url }}" 
-            class="about__cta inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
-          >
-            {{ section.settings.button_text }}
+
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Founded with a vision to create more than just a bike shop, Bike Yard has become 
+          a community hub where cycling enthusiasts gather, share stories, and fuel their 
+          passion for the sport. We believe that cycling is not just a mode of transportation 
+          or a sport—it's a lifestyle that brings people together.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-primary-600">10+</div>
+            <div class="text-gray-600">Years Experience</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-accent-600">1000+</div>
+            <div class="text-gray-600">Bikes Sold</div>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="/pages/about" class="btn-primary">
+            Learn More About Us
           </a>
-        {% endif %}
+        </div>
       </div>
-      
-      <!-- Image -->
-      <div class="about__image">
-        {% if section.settings.image %}
-          <img 
-            src="{{ section.settings.image | image_url: width: 600 }}" 
-            alt="{{ section.settings.image.alt | escape }}"
-            class="about__image-img w-full h-auto rounded-lg shadow-lg"
-            loading="lazy"
-          >
-        {% else %}
-          <div class="about__placeholder w-full h-96 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center">
-            <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-primary-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 group">
+          <div class="text-primary-600 mb-4">
+            <svg class="h-8 w-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3"></path>
             </svg>
           </div>
-        {% endif %}
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Quality Bikes
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            Premium selection of mountain, road, and city bikes from top brands
+          </p>
+        </div>
+
+        <div class="bg-accent-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 group">
+          <div class="text-accent-600 mb-4">
+            <svg class="h-8 w-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Expert Service
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            Professional maintenance and repair services by certified technicians
+          </p>
+        </div>
+
+        <div class="bg-secondary-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 group">
+          <div class="text-secondary-600 mb-4">
+            <svg class="h-8 w-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Cafe & Community
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            Relax in our cafe while we service your bike and connect with fellow cyclists
+          </p>
+        </div>
+
+        <div class="bg-green-50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 group">
+          <div class="text-green-600 mb-4">
+            <svg class="h-8 w-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Cycling Community
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            Join our vibrant community of cycling enthusiasts and participate in group rides
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission Statement -->
+    <div class="mt-20 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-3xl font-bold text-gray-900 mb-6">
+          Our Mission
+        </h3>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          To inspire and empower people to discover the joy of cycling by providing 
+          exceptional products, expert service, and a welcoming community where every 
+          rider feels at home.
+        </p>
       </div>
     </div>
   </div>
@@ -83,111 +122,188 @@
 
 <style>
   .about {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: white;
   }
   
-  .about__content {
+  .about > div {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .about .grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4rem;
     align-items: center;
   }
   
-  .about__title {
+  .about h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, var(--accent-400) 0%, var(--primary-400) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .about .space-y-8 > div:first-child p {
+    font-size: 1.25rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+  
+  .about .space-y-8 > p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+  
+  .about .grid.grid-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .about .grid.grid-cols-2 > div {
+    text-align: center;
+  }
+  
+  .about .grid.grid-cols-2 .text-3xl {
     font-size: 1.875rem;
     font-weight: 700;
-    color: var(--gray-900);
+  }
+  
+  .about .grid.grid-cols-2 .text-primary-600 {
+    color: var(--primary-600);
+  }
+  
+  .about .grid.grid-cols-2 .text-accent-600 {
+    color: var(--accent-600);
+  }
+  
+  .about .grid.grid-cols-2 .text-gray-600 {
+    color: #6b7280;
+  }
+  
+  .about .grid.grid-cols-1.sm\\:grid-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .about .grid.grid-cols-1.sm\\:grid-cols-2 > div {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  .about .grid.grid-cols-1.sm\\:grid-cols-2 > div:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .about .bg-primary-50 {
+    background: var(--primary-50);
+  }
+  
+  .about .bg-accent-50 {
+    background: var(--accent-50);
+  }
+  
+  .about .bg-secondary-50 {
+    background: var(--secondary-50);
+  }
+  
+  .about .bg-green-50 {
+    background: #f0fdf4;
+  }
+  
+  .about .text-primary-600 {
+    color: var(--primary-600);
+  }
+  
+  .about .text-accent-600 {
+    color: var(--accent-600);
+  }
+  
+  .about .text-secondary-600 {
+    color: var(--secondary-600);
+  }
+  
+  .about .text-green-600 {
+    color: #16a34a;
+  }
+  
+  .about .text-xl {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about .text-gray-600 {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+  
+  .about .mt-20 {
+    margin-top: 5rem;
+  }
+  
+  .about .mt-20 .max-w-4xl {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+  
+  .about .mt-20 h3 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
     margin-bottom: 1.5rem;
   }
   
-  .about__description {
-    font-size: 1.125rem;
-    color: var(--gray-600);
-    margin-bottom: 2rem;
-    line-height: 1.75;
+  .about .mt-20 p {
+    font-size: 1.25rem;
+    color: #6b7280;
+    line-height: 1.6;
   }
   
-  .about__features {
-    margin-bottom: 2rem;
-  }
-  
-  .about__feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-  
-  .about__feature-icon {
-    flex-shrink: 0;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: var(--primary-600);
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.25rem;
-  }
-  
-  .about__feature-icon svg {
-    width: 1rem;
-    height: 1rem;
+  .btn-primary {
+    background: var(--primary-600);
     color: white;
-  }
-  
-  .about__feature-text {
-    color: var(--gray-700);
-  }
-  
-  .about__cta {
-    display: inline-block;
-    background-color: var(--primary-600);
-    color: white;
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.2s;
+    display: inline-block;
+    transition: all 0.3s ease;
   }
   
-  .about__cta:hover {
-    background-color: var(--primary-700);
+  .btn-primary:hover {
+    background: var(--primary-700);
+    transform: translateY(-2px);
   }
   
-  .about__image-img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about__placeholder {
-    width: 100%;
-    height: 24rem;
-    background-color: var(--gray-200);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .about__placeholder svg {
-    width: 6rem;
-    height: 6rem;
-    color: var(--gray-400);
+  @media (min-width: 640px) {
+    .about .grid.grid-cols-1.sm\\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   
   @media (min-width: 768px) {
-    .about__title {
-      font-size: 2.25rem;
+    .about h2 {
+      font-size: 3rem;
     }
   }
   
   @media (min-width: 1024px) {
-    .about__content {
-      grid-template-columns: 1fr 1fr;
+    .about .grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
@@ -206,36 +322,61 @@
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "We are passionate about cycling and committed to providing the best bikes, gear, and service to our community. Our expert team is here to help you find the perfect ride for your adventures."
+      "default": "At Bike Yard Shop, we are passionate about cycling. Our mission is to provide top-quality bikes, gear, and accessories to cyclists of all levels."
     },
     {
       "type": "text",
-      "id": "feature_1",
-      "label": "Feature 1",
-      "default": "Expert bike fitting and maintenance services"
+      "id": "feature_1_title",
+      "label": "Feature 1 Title",
+      "default": "Quality Bikes"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_1_description",
+      "label": "Feature 1 Description",
+      "default": "Premium selection of mountain, road, and city bikes from top brands"
     },
     {
       "type": "text",
-      "id": "feature_2",
-      "label": "Feature 2",
-      "default": "Wide selection of premium bikes and accessories"
+      "id": "feature_2_title",
+      "label": "Feature 2 Title",
+      "default": "Expert Service"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_2_description",
+      "label": "Feature 2 Description",
+      "default": "Professional maintenance and repair services by certified technicians"
     },
     {
       "type": "text",
-      "id": "feature_3",
-      "label": "Feature 3",
-      "default": "Community events and group rides"
+      "id": "feature_3_title",
+      "label": "Feature 3 Title",
+      "default": "Cafe & Community"
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "About Image"
+      "type": "textarea",
+      "id": "feature_3_description",
+      "label": "Feature 3 Description",
+      "default": "Relax in our cafe while we service your bike and connect with fellow cyclists"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Feature 4 Title",
+      "default": "Cycling Community"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_4_description",
+      "label": "Feature 4 Description",
+      "default": "Join our vibrant community of cycling enthusiasts and participate in group rides"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Learn More"
+      "default": "Learn More About Us"
     },
     {
       "type": "url",

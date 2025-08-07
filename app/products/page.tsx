@@ -219,7 +219,7 @@ export default function ProductsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="card group"
+                  className="card group border border-gray-100 hover:border-primary-600 hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 relative"
                 >
                   {/* Product Image */}
                   <div className="relative overflow-hidden rounded-t-xl">
@@ -230,23 +230,20 @@ export default function ProductsPage() {
                       height={300}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    
                     {/* Badges */}
-                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
                       {product.tags.includes('new') && (
-                        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                          New
-                        </span>
+                        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow">New</span>
                       )}
                       {product.variants[0]?.compareAtPrice && (
-                        <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                          Sale
-                        </span>
+                        <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow">Sale</span>
+                      )}
+                      {!product.variants[0]?.available && (
+                        <span className="bg-gray-400 text-white px-3 py-1 rounded-full text-xs font-medium shadow">Out of Stock</span>
                       )}
                     </div>
-
                     {/* Quick Actions */}
-                    <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                       <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <Heart className="h-5 w-5 text-gray-600 hover:text-red-500 transition-colors duration-300" />
                       </button>
@@ -255,7 +252,6 @@ export default function ProductsPage() {
                       </button>
                     </div>
                   </div>
-
                   {/* Product Info */}
                   <div className="p-4">
                     <div className="mb-2">
@@ -263,16 +259,25 @@ export default function ProductsPage() {
                         {product.productType}
                       </span>
                     </div>
-                    
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300 line-clamp-1">
                       {product.title}
                     </h3>
-
                     {/* Description */}
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-2 prose prose-sm">
                       {product.description}
                     </p>
-
+                    {/* Rating (mock, since Shopify doesn't provide) */}
+                    <div className="flex items-center mb-3">
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-4 w-4 ${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'} drop-shadow-sm`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-gray-500 ml-2">(N/A)</span>
+                    </div>
                     {/* Price */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2">
@@ -285,11 +290,10 @@ export default function ProductsPage() {
                           </span>
                         )}
                       </div>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-xs text-gray-500">
                         {product.vendor}
                       </span>
                     </div>
-
                     {/* Add to Cart Button */}
                     <button 
                       className={`w-full btn-primary group/btn ${!product.variants[0]?.available ? 'opacity-50 cursor-not-allowed' : ''}`}
